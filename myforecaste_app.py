@@ -485,15 +485,4 @@ def main():
         """)
         
 if __name__ == '__main__':
-
-    if len(sys.argv) == 1:
-        # The code is being run directly (vs code). Start the parent process.
-        port = find_free_port()
-        cmd = [sys.executable, "-m", "streamlit", "run", __file__, "--server.port", str(port), "--", "child"]
-        subprocess.run(cmd)
-    elif len(sys.argv) > 1 and sys.argv[-1] == "child":
-        # Child process to avoid looping. without it tabs would keep opening
-        main()
-    else:
-        # The code is being run through streamlit
-        main()
+    main()
